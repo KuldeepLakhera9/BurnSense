@@ -24,22 +24,19 @@ function BurnoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://burnsense-backend.onrender.com/api/analyze",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          screenTime: Number(formData.screenTime),
-          nightUsage: Number(formData.nightUsage),
-          unlocks: Number(formData.unlocks),
-          socialTime: Number(formData.socialTime),
-          notifications: Number(formData.notifications),
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:8080/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        screenTime: Number(formData.screenTime),
+        nightUsage: Number(formData.nightUsage),
+        unlocks: Number(formData.unlocks),
+        socialTime: Number(formData.socialTime),
+        notifications: Number(formData.notifications),
+      }),
+    });
 
     const data = await response.json();
     setResult(data);
